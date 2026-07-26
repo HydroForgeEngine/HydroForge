@@ -1,0 +1,7 @@
+#pragma once
+
+#define HYDROFORGE_NAME "HydroForge"
+#define HYDROFORGE_COMPANY "HydroForge Team"
+
+#define HYDROFORGE_DEFAULT_WIDTH 1280
+#define HYDROFORGE_DEFAULT_HEIGHT 720
