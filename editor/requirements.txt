@@ -1,1 +1,2 @@
 pyinstaller
+PySide6
