@@ -4,12 +4,11 @@ on:
   push:
     branches:
       - main
-
+      - master
   workflow_dispatch:
 
 jobs:
   build-windows:
-
     runs-on: windows-latest
 
     steps:
@@ -22,28 +21,23 @@ jobs:
           python-version: "3.12"
 
       - name: Install dependencies
+        shell: pwsh
         run: |
           python -m pip install --upgrade pip
           pip install -r Editor/requirements.txt
 
-      - name: Build Editor
-        run: |
-          pyinstaller ^
-            --noconfirm ^
-            --clean ^
-            --windowed ^
-            --name HydroForge ^
-            --icon editor/assets/HydroForge.ico ^
-            editor/main.py
-            
-      - name: Copy Editor files
+      - name: Build HydroForge Editor
         shell: pwsh
         run: |
-          New-Item -ItemType Directory -Force -Path dist/HydroForge/Editor
-          Copy-Item Editor/app.py dist/HydroForge/Editor/
-          Copy-Item Editor/build_manager.py dist/HydroForge/Editor/
+          pyinstaller `
+            --noconfirm `
+            --clean `
+            --windowed `
+            --name HydroForge `
+            --icon "Editor/assets/HydroForge.ico" `
+            "Editor/main.py"
 
-      - name: Upload HydroForge Editor
+      - name: Upload HydroForge
         uses: actions/upload-artifact@v4
         with:
           name: HydroForge-Windows
