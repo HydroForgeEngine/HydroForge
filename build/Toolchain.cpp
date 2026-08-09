@@ -22,18 +22,28 @@ namespace HydroForge
         return m_Type;
     }
 
-    void Toolchain::SetPath(const std::string& path)
+    void Toolchain::SetRootPath(const std::string& path)
     {
-        m_Path = path;
+        m_RootPath = path;
     }
 
-    const std::string& Toolchain::GetPath() const
+    const std::string& Toolchain::GetRootPath() const
     {
-        return m_Path;
+        return m_RootPath;
+    }
+
+    void Toolchain::SetCompiler(const std::string& compiler)
+    {
+        m_Compiler = compiler;
+    }
+
+    const std::string& Toolchain::GetCompiler() const
+    {
+        return m_Compiler;
     }
 
     bool Toolchain::IsValid() const
     {
-        return !m_Path.empty();
+        return !m_Compiler.empty();
     }
 }
