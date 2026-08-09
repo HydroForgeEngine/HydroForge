@@ -26,6 +26,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r Editor/requirements.txt
 
+      - name: Check PySide6
+        shell: pwsh
+        run: |
+          python -c "import PySide6; print(PySide6.__version__)"
+
       - name: Build HydroForge Editor
         shell: pwsh
         run: |
@@ -34,6 +39,7 @@ jobs:
             --clean `
             --windowed `
             --name HydroForge `
+            --collect-all PySide6 `
             --icon "Editor/assets/HydroForge.ico" `
             "Editor/main.py"
 
